@@ -75,8 +75,6 @@ def user_input_features():
     streaming_movies = st.sidebar.selectbox("스트리밍 영화 (StreamingMovies)", ("No", "Yes", "No internet service"))
 
     # 4. 커스텀 피처 계산 (Pipeline의 SQL 로직 재현)
-    # Tenure Group 계산
-    tenure_group = 'New' if tenure <= 12 else 'Loyal'
     # Bundle Density 계산
     services = [phone, multiple == 'Yes', internet != 'No', security == 'Yes', 
                 backup == 'Yes', protection == 'Yes', support == 'Yes', 
@@ -84,8 +82,6 @@ def user_input_features():
     bundle_density = sum(services)
     # Payment Friction 계산
     payment_friction = 1 if payment == 'Electronic check' else 0
-    # Digital Immigrant 계산
-    digital_immigrant = 1 if (senior == 1 and internet == 'Fiber optic') else 0
     # Contract Leverage 계산
     if contract == 'Month-to-month' and monthly_charges > 70:
         leverage = 'High-Risk Flex'
@@ -116,10 +112,8 @@ def user_input_features():
         'TechSupport': support, 'StreamingTV': streaming_tv, 'StreamingMovies': streaming_movies,
         'Contract': contract, 'PaperlessBilling': int(paperless), 'PaymentMethod': payment,
         'MonthlyCharges': monthly_charges, 'TotalCharges': total_charges,
-        'tenure_group': tenure_group, 'bundle_density': bundle_density,
-        'payment_friction_flag': payment_friction, 'overpaying_flag': overpaying_flag,
-        'digital_immigrant_risk': digital_immigrant, 'unbalanced_bundle': unbalanced_bundle,
-        'contract_leverage': leverage, 'price_fatigue_index': price_fatigue
+        'bundle_density': bundle_density, 'payment_friction_flag': payment_friction, 'overpaying_flag': overpaying_flag,
+        'unbalanced_bundle': unbalanced_bundle, 'contract_leverage': leverage, 'price_fatigue_index': price_fatigue
     }
     
     return pd.DataFrame([data])
