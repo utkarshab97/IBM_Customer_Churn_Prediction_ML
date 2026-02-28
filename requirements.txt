@@ -14,3 +14,4 @@ scikit-learn
 streamlit
 matplotlib
 seaborn
+protobuf==3.20.3
