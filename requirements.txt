@@ -1,0 +1,16 @@
+# 데이터 처리 및 분석
+pandas
+numpy
+google-cloud-bigquery
+pandas-gbq
+
+# 머신러닝 모델 및 해석
+xgboost
+shap
+joblib
+scikit-learn
+
+# 웹 대시보드 및 시각화
+streamlit
+matplotlib
+seaborn
