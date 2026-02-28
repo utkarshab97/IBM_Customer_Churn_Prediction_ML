@@ -5,7 +5,7 @@ setuptools
 # 2. 데이터 처리 (NumPy 2.x 허용으로 빌드 시간 90% 단축)
 pandas>=2.2.2
 numpy>=2.1.0
-google-cloud-bigquery==3.25.0
+google-cloud-bigquery>=3.20.0
 pandas-gbq>=0.23.0
 db-dtypes>=1.2.0
 
@@ -18,8 +18,8 @@ seaborn
 joblib
 
 # 4. 의존성 충돌 해결을 위한 고정
-google-api-core==2.19.1
-googleapis-common-protos==1.63.0
+protobuf>=4.21.6,<6.0.0dev
+google-api-core>=2.19.0
+googleapis-common-protos>=1.63.0
 grpcio>=1.62.0
-grpcio-status==1.62.2
-protobuf==3.20.3
+grpcio-status>=1.62.0
