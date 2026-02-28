@@ -1,4 +1,5 @@
 # IBM Telco Churn Prediction: High-Recall ML Pipeline
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://ibm-customer-churn-prediction-ml.streamlit.app/)
 
 ## 프로젝트 개요 (Overview)
 본 프로젝트는 **82%의 높은 재현율 (Recall)**을 달성하여 실제 이탈 고객을 선제적으로 식별하는 엔드-투-엔드 머신러닝 파이프라인 프로젝트입니다. 단순한 모델 학습을 넘어, BigQuery 데이터 통합, SQL 활용한 6가지 비즈니스 맞춤형 피처 엔지니어링, 그리고 SHAP을 활용한 모델 해석성 (Explainability/XAI) 확보에 집중했습니다.
@@ -104,7 +105,7 @@
 ---
 
 ## 🔗 프로젝트 링크
-Streamlit Demo: (Coming Soon)
+Streamlit Demo: **[IBM Customer Churn Prevention App](https://<your-app-name>.streamlit.app)**
 
 Dataset Source: [IBM Watson Community (Classic Telco Churn)](https://www.kaggle.com/datasets/blastchar/telco-customer-churn/data)
 
