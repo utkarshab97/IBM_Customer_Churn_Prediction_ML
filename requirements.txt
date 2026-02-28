@@ -1,20 +1,23 @@
-# 데이터 처리 및 분석
-pandas
-numpy
+# 1. 웹 대시보드 (최신 버전으로 고정하여 구버전 pyarrow 충돌 방지)
+streamlit>=1.31.0
+setuptools
+
+# 2. 데이터 처리 및 분석
+pandas>=2.2.0
+numpy<2.0.0
 google-cloud-bigquery
 pandas-gbq
+db-dtypes
 
-# 머신러닝 모델 및 해석
+# 3. 머신러닝 모델 및 해석
 xgboost
 shap
 joblib
 scikit-learn
 
-# 웹 대시보드 및 시각화
-streamlit
+# 4. 시각화
 matplotlib
 seaborn
 
-# 필수 호환성 패치
+# 5. 하위 호환성 고정
 protobuf==3.20.3
-setuptools
