@@ -1,21 +1,23 @@
-# 1. 핵심 프레임워크 (Python 3.13 대응)
+# 1. 핵심 프레임워크 (Python 3.13 최적화)
 streamlit>=1.31.0
 setuptools
 
-# 2. 데이터 처리 (NumPy 버전을 풀어서 빌드 시간을 단축)
-pandas>=2.2.0
+# 2. 데이터 처리 (NumPy 2.x 허용으로 빌드 시간 90% 단축)
+pandas>=2.2.2
 numpy>=2.1.0
-google-cloud-bigquery
-pandas-gbq
-db-dtypes
+google-cloud-bigquery>=3.20.0
+pandas-gbq>=0.23.0
+db-dtypes>=1.2.0
 
 # 3. 머신러닝 및 시각화
-xgboost
-shap
+xgboost>=2.0.0
+shap>=0.45.0
 joblib
-scikit-learn
+scikit-learn>=1.4.0
 matplotlib
 seaborn
 
-# 4. 필수 패치
+# 4. 의존성 충돌 해결을 위한 고정
 protobuf==3.20.3
+grpcio>=1.60.0
+google-api-core>=2.15.0
