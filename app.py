@@ -136,28 +136,36 @@ if st.button('분석 실행'):
     input_df[cat_cols] = input_df[cat_cols].astype('category')
     
     # 예측
-    prob = model.predict_proba(input_df)[0][1]
-    
-    # 결과 요약
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("이탈 확률", f"{prob:.2%}")
-    with col2:
-        risk_status = "🔴 고위험" if prob > 0.7 else "🟡 주의" if prob > 0.4 else "🟢 안전"
-        st.metric("위험 등급", risk_status)
+    try:
+        # features에 정의된 순서대로 input_df의 컬럼을 재배열합니다.
+        input_df = input_df[features]
 
-    # SHAP Waterfall Plot
-    st.subheader("주요 이탈 원인 분석 (Explainable AI)")
-    shap_values = explainer(input_df)
-    fig, ax = plt.subplots()
-    shap.plots.waterfall(shap_values[0], max_display=5, show=False)
-    st.pyplot(fig)
+        # 3. 예측 실행
+        prob = model.predict_proba(input_df)[0][1]
+        
+        # 결과 요약
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric("이탈 확률", f"{prob:.2%}")
+        with col2:
+            risk_status = "🔴 고위험" if prob > 0.7 else "🟡 주의" if prob > 0.4 else "🟢 안전"
+            st.metric("위험 등급", risk_status)
 
-    # 비즈니스 권고안
-    st.subheader("💡 맞춤형 리텐션 전략")
-    # SHAP 기여도가 높은 상위 3개 변수 추출
-    feature_impacts = pd.Series(shap_values.values[0], index=features)
-    top_reasons = feature_impacts.sort_values(ascending=False).head(3).index.tolist()
-    
-    for advice in get_business_advice(top_reasons):
-        st.info(advice)
+        # SHAP Waterfall Plot
+        st.subheader("주요 이탈 원인 분석 (Explainable AI)")
+        shap_values = explainer(input_df)
+        fig, ax = plt.subplots()
+        shap.plots.waterfall(shap_values[0], max_display=5, show=False)
+        st.pyplot(fig)
+
+        # 비즈니스 권고안
+        st.subheader("💡 맞춤형 리텐션 전략")
+        # SHAP 기여도가 높은 상위 3개 변수 추출
+        feature_impacts = pd.Series(shap_values.values[0], index=features)
+        top_reasons = feature_impacts.sort_values(ascending=False).head(3).index.tolist()
+
+        for advice in get_business_advice(top_reasons):
+            st.info(advice)
+    except KeyError as e:
+        st.error(f"피처 불일치 에러: 모델에 필요한 {e} 컬럼이 입력 데이터에 없습니다.")
+        st.write("모델이 요구하는 컬럼 순서:", features)
